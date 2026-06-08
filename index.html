@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniIntervene: Agentic Intervention for Efficient Real-World Reinforcement Learning</title>
+  <meta name="description" content="UniIntervene is an agentic intervention model that detects unproductive exploration and autonomously recovers the policy toward high-value states, improving real-world robot RL with far fewer human interventions." />
+
+  <!-- Social / Open Graph -->
+  <meta property="og:title" content="UniIntervene: Agentic Intervention for Efficient Real-World Reinforcement Learning" />
+  <meta property="og:description" content="Turning human intervention into a value-aware autonomous recovery process for real-world robot RL." />
+  <meta property="og:image" content="static/images/teaser.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/png" href="static/images/favicon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-brand" href="#top">
+        <span class="brand-mark">Uni</span>Intervene
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#abstract">Abstract</a>
+        <a href="#video">Video</a>
+        <a href="#method">Method</a>
+        <a href="#tasks">Tasks</a>
+        <a href="#comparison">Comparisons</a>
+        <a href="#results">Results</a>
+        <a href="#bibtex">BibTeX</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="top">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="container hero-content">
+      <span class="badge reveal">🤖 Anonymous Submission &nbsp;·&nbsp; Under Review</span>
+
+      <h1 class="hero-title reveal">
+        <span class="grad">UniIntervene</span>
+      </h1>
+      <p class="hero-subtitle reveal">
+        Agentic Intervention for Efficient Real-World Reinforcement Learning
+      </p>
+
+      <img class="hero-logo reveal" src="static/images/logo.png"
+        alt="UniIntervene: a value-aware model that decides when and how to intervene" loading="eager" />
+      <p class="hero-tagline reveal">
+        An agentic intervention model that detects unproductive exploration and
+        <strong>autonomously recovers</strong> the policy toward high-value states &mdash; turning human
+        intervention into a <strong>value-aware recovery process</strong> for real-world robot RL.
+      </p>
+
+      <div class="authors reveal">
+        <span class="author">Anonymous Author(s)</span>
+      </div>
+      <div class="affil reveal">Affiliations hidden for double-blind review</div>
+
+      <!-- NOTE: replace the "#" hrefs below with real links once de-anonymized -->
+      <div class="hero-buttons reveal">
+        <a class="btn btn-primary" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" class="ic"><path d="M6 2h9l5 5v15a0 0 0 0 1 0 0H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M14 2v6h6" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+          Paper
+        </a>
+        <a class="btn btn-dark" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" class="ic"><path d="M3 5h18M5 5v14a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V5M9 10h6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+          arXiv
+        </a>
+        <a class="btn btn-dark" href="#" aria-disabled="true">
+          <svg viewBox="0 0 24 24" class="ic"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6 0C7.2 1.3 6.1 1.6 6.1 1.6a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.7 8c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Code
+        </a>
+        <a class="btn btn-accent" href="https://www.youtube.com/watch?v=p2cgTxBblD0" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" class="ic"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+          Video
+        </a>
+      </div>
+    </div>
+
+    <!-- Teaser figure -->
+    <div class="container">
+      <figure class="teaser-figure reveal">
+        <img src="static/images/teaser.png" alt="UniIntervene overview teaser" loading="lazy" />
+        <figcaption>
+          <strong>UniIntervene</strong> replaces human intervention in HiL-RL with a value-aware critic
+          that detects unproductive rollouts and a recovery policy that restores progress &mdash; yielding
+          higher success with fewer human interventions on real-world manipulation.
+        </figcaption>
+      </figure>
+    </div>
+  </header>
+
+  <!-- ===================== STATS ===================== -->
+  <section class="stats-band">
+    <div class="container stats-grid">
+      <div class="stat reveal">
+        <div class="stat-num">+8.6<span>%</span></div>
+        <div class="stat-label">Avg. success rate<br/>vs. SOTA HiL-RL</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">&minus;57<span>%</span></div>
+        <div class="stat-label">Human interventions<br/>vs. HiL-SERL</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">88<span>%</span></div>
+        <div class="stat-label">Average task<br/>success rate</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">14.6<span>%</span></div>
+        <div class="stat-label">Intervention rate<br/>(34.3% for HiL-SERL)</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Real-world<br/>manipulation tasks</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABSTRACT ===================== -->
+  <section class="section" id="abstract">
+    <div class="container narrow">
+      <h2 class="section-title"><span class="kicker">01</span> Abstract</h2>
+      <p class="lead">
+        Human-in-the-loop reinforcement learning (HiL-RL) has emerged as an effective paradigm for
+        real-world robotic manipulation, enabling online policy improvement with human guidance.
+        However, current HiL-RL frameworks remain <em>intervention-intensive</em>, relying on frequent
+        human corrections to redirect the policy out of unproductive exploration, which incurs high
+        labor cost and limits real-world scalability.
+      </p>
+      <p>
+        To address this, we propose <strong>UniIntervene</strong>, an agentic intervention model that
+        detects unproductive exploration and autonomously recovers the policy toward high-value states,
+        taking over the bulk of interventions from human operators. UniIntervene first performs
+        <strong>future-conditioned action-value estimation</strong>, predicting the latent consequence of
+        the current action and evaluating its induced value, which provides a more stable progress signal.
+        Building on this, a <strong>temporal value-risk critic</strong> aggregates recent value dynamics
+        and triggers intervention when the estimated value exhibits sustained stagnation or degradation.
+        When intervention is required, UniIntervene retrieves a high-value recovery target from a
+        <strong>memory of past intervention episodes</strong> and produces executable corrective actions
+        through a goal-conditioned recovery policy.
+      </p>
+      <p>
+        In this way, UniIntervene turns intervention from passive human correction into a value-aware
+        recovery process for efficient real-world RL. Extensive experiments on diverse real-world
+        manipulation tasks demonstrate that UniIntervene improves the average success rate by
+        <strong>8.6%</strong> while reducing human interventions by <strong>57%</strong> relative to
+        state-of-the-art HiL-RL baselines.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== VIDEO ===================== -->
+  <section class="section section-alt" id="video">
+    <div class="container narrow">
+      <h2 class="section-title"><span class="kicker">02</span> Overview Video</h2>
+      <p class="section-sub">A walkthrough of UniIntervene detecting value stagnation and autonomously recovering on real-world tasks.</p>
+      <div class="video-embed reveal">
+        <iframe src="https://www.youtube.com/embed/p2cgTxBblD0?si=I0w0T4RqtZVpeujX"
+          title="UniIntervene video" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== METHOD ===================== -->
+  <section class="section" id="method">
+    <div class="container">
+      <h2 class="section-title"><span class="kicker">03</span> How UniIntervene Works</h2>
+      <p class="section-sub">
+        UniIntervene internalizes the intervention decision: it continuously asks whether the ongoing
+        rollout is making productive progress, and autonomously redirects the policy when it is not.
+      </p>
+
+      <figure class="figure-card reveal">
+        <img src="static/images/pipeline.png" alt="UniIntervene method pipeline" loading="lazy" />
+        <figcaption>
+          <strong>Overview of UniIntervene.</strong>
+          <strong>(a)</strong> A Qwen-VL backbone feeds a Latent Future Head with twin-critic and
+          temporal value-risk supervision, and a Recovery Action Head producing corrective actions
+          <em>a<sub>rec</sub></em>.
+          <strong>(b)</strong> A memory buffer pairs past intervention states with retrieved high-value goals.
+          <strong>(c)</strong> The temporal value-risk <em>R<sub>t</sub></em> triggers intervention upon sustained stagnation.
+          <strong>(d)</strong> UniIntervene plugs into the real-world RL loop, overriding <em>a<sub>t</sub></em>
+          with <em>a<sub>rec</sub></em> when triggered and contributing recovery transitions to the replay buffer.
+        </figcaption>
+      </figure>
+
+      <div class="component-grid">
+        <div class="comp-card reveal">
+          <div class="comp-num">1</div>
+          <h3>Future-conditioned Action-Value</h3>
+          <p>
+            A model-based critic predicts the <strong>latent consequence</strong> of the current action and
+            evaluates the value it induces &mdash; a far more stable progress signal under sparse rewards than
+            scoring a single observation. Supervised by a frozen V-JEPA2 encoder and a progress-aligned
+            proxy value function.
+          </p>
+        </div>
+        <div class="comp-card reveal">
+          <div class="comp-num">2</div>
+          <h3>Temporal Value-Risk Trigger</h3>
+          <p>
+            Rather than firing on any low value, a risk critic aggregates recent value dynamics over a
+            sliding window. It triggers only on <strong>sustained stagnation or degradation</strong>,
+            filtering out the transient dips that naturally occur during contact, alignment, and regrasping.
+          </p>
+        </div>
+        <div class="comp-card reveal">
+          <div class="comp-num">3</div>
+          <h3>Memory-guided Recovery</h3>
+          <p>
+            When triggered, UniIntervene retrieves a <strong>high-value recovery target</strong> from a memory
+            of verified past recoveries, then a goal-conditioned policy decodes corrective actions toward it.
+            Memory supplies <em>where</em> to recover; the policy learns <em>how</em> to get there &mdash;
+            no human takeover required.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TASKS ===================== -->
+  <section class="section section-alt" id="tasks">
+    <div class="container">
+      <h2 class="section-title"><span class="kicker">04</span> Real-World Task Suite</h2>
+      <p class="section-sub">
+        Five tasks on a UR7e arm spanning multi-object interaction, contact-rich assembly, and non-rigid
+        manipulation &mdash; demanding pose robustness, precise contact, long-horizon correction, and
+        recovery from low-value states.
+      </p>
+
+      <figure class="figure-card reveal">
+        <img src="static/images/tasks.jpg" alt="The five real-world manipulation tasks" loading="lazy" />
+        <figcaption>The five real-world manipulation tasks, shown from the third-person workspace camera during execution.</figcaption>
+      </figure>
+
+      <div class="task-grid">
+        <div class="task-chip reveal"><span class="tag tag-multi">Multi-object</span><h4>Pick Eggplant</h4><p>Grasp the eggplant among distractors and lift it clear, leaving distractors undisturbed.</p></div>
+        <div class="task-chip reveal"><span class="tag tag-contact">Contact-rich</span><h4>Tube Insertion</h4><p>Align and seat a flexible tube into a fixed port with sub-centimeter precision.</p></div>
+        <div class="task-chip reveal"><span class="tag tag-contact">Contact-rich</span><h4>RAM Insertion</h4><p>Align a memory module to a slot and press it home &mdash; failures are visually subtle.</p></div>
+        <div class="task-chip reveal"><span class="tag tag-contact">Contact-rich</span><h4>Wipe Whiteboard</h4><p>Wipe a marked region while maintaining contact force on a vertical surface.</p></div>
+        <div class="task-chip reveal"><span class="tag tag-nonrigid">Non-rigid</span><h4>Fold Towel</h4><p>Fold a flat towel along a target line through deformable, low-value regrasping states.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SYSTEM DEMOS ===================== -->
+  <section class="section" id="demos">
+    <div class="container">
+      <h2 class="section-title"><span class="kicker">05</span> UniIntervene in Action</h2>
+      <p class="section-sub">
+        Qualitative rollouts of the full system: UniIntervene detects stagnation, takes over from the
+        policy, and recovers toward task completion &mdash; autonomously.
+      </p>
+      <div class="demo-grid">
+        <figure class="video-card reveal">
+          <video src="static/videos/system_tube.mp4" poster="static/images/posters/system_tube.jpg" muted loop playsinline preload="none" data-lazy></video>
+          <figcaption><span class="tag tag-contact">Contact-rich</span> Tube Insertion</figcaption>
+        </figure>
+        <figure class="video-card reveal">
+          <video src="static/videos/system_ram.mp4" poster="static/images/posters/system_ram.jpg" muted loop playsinline preload="none" data-lazy></video>
+          <figcaption><span class="tag tag-contact">Contact-rich</span> RAM Insertion</figcaption>
+        </figure>
+        <figure class="video-card reveal">
+          <video src="static/videos/system_wipe.mp4" poster="static/images/posters/system_wipe.jpg" muted loop playsinline preload="none" data-lazy></video>
+          <figcaption><span class="tag tag-contact">Contact-rich</span> Wipe Whiteboard</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPARISONS ===================== -->
+  <section class="section section-alt" id="comparison">
+    <div class="container">
+      <h2 class="section-title"><span class="kicker">06</span> Head-to-Head Comparisons</h2>
+      <p class="section-sub">
+        Same task, same platform. <strong>UniIntervene (ours)</strong> recovers from low-value states and
+        completes the task, while the <strong>HiL-SERL</strong> baseline stalls or requires repeated human
+        correction.
+      </p>
+
+      <div class="tabs reveal" id="cmpTabs">
+        <button class="tab active" data-cmp="insert">Tube Insertion</button>
+        <button class="tab" data-cmp="ram">RAM Insertion</button>
+        <button class="tab" data-cmp="wipe">Wipe Whiteboard</button>
+        <button class="tab" data-cmp="fold">Fold Towel</button>
+      </div>
+
+      <div class="compare-wrap reveal">
+        <figure class="compare-col ours">
+          <div class="compare-label"><span class="dot dot-ours"></span> UniIntervene (Ours)</div>
+          <video id="cmpOurs" src="static/videos/insert_uniIntervene.mp4" poster="static/images/posters/insert_uniIntervene.jpg" muted loop playsinline preload="none" data-lazy></video>
+        </figure>
+        <figure class="compare-col base">
+          <div class="compare-label"><span class="dot dot-base"></span> HiL-SERL (Baseline)</div>
+          <video id="cmpBase" src="static/videos/insert_hilserl.mp4" poster="static/images/posters/insert_hilserl.jpg" muted loop playsinline preload="none" data-lazy></video>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESULTS ===================== -->
+  <section class="section" id="results">
+    <div class="container">
+      <h2 class="section-title"><span class="kicker">07</span> Results</h2>
+      <p class="section-sub">
+        UniIntervene attains the best success rate on <strong>every</strong> task and the lowest overall
+        intervention rate &mdash; less than half of HiL-SERL.
+      </p>
+
+      <div class="table-scroll reveal">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th rowspan="2" class="left">Method</th>
+              <th class="grp grp-multi">Pick Eggplant</th>
+              <th class="grp grp-contact" colspan="3">Contact-rich</th>
+              <th class="grp grp-nonrigid">Fold Towel</th>
+              <th rowspan="2" class="grp grp-avg">Average</th>
+            </tr>
+            <tr class="subhead">
+              <th>SR&nbsp;/&nbsp;IR</th>
+              <th>Tube&nbsp;Ins.</th>
+              <th>RAM&nbsp;Ins.</th>
+              <th>Wipe</th>
+              <th>SR&nbsp;/&nbsp;IR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="left">&pi;<sub>0.5</sub> (SFT)</td>
+              <td><b>95</b> / &ndash;</td>
+              <td>30 / &ndash;</td>
+              <td>10 / &ndash;</td>
+              <td>65 / &ndash;</td>
+              <td>70 / &ndash;</td>
+              <td>54 / &ndash;</td>
+            </tr>
+            <tr>
+              <td class="left">HiL-SERL</td>
+              <td>90 / 28.7</td>
+              <td>60 / 30.2</td>
+              <td>85 / 32.3</td>
+              <td>85 / 30.5</td>
+              <td>85 / 49.8</td>
+              <td>81 / 34.3</td>
+            </tr>
+            <tr>
+              <td class="left">HiL-SERL + FA-RL</td>
+              <td>85 / 20.4</td>
+              <td>60 / 22.1</td>
+              <td>75 / 27.9</td>
+              <td>80 / 21.9</td>
+              <td>85 / 30.9</td>
+              <td>77 / 24.6</td>
+            </tr>
+            <tr class="ours-row">
+              <td class="left">HiL-SERL + <b>UniIntervene</b></td>
+              <td><b>95</b> / <b>10.0</b></td>
+              <td><b>70</b> / <b>15.8</b></td>
+              <td><b>95</b> / <b>12.1</b></td>
+              <td><b>90</b> / <b>10.9</b></td>
+              <td><b>90</b> / <b>24.1</b></td>
+              <td><b>88</b> / <b>14.6</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="table-note">SR: success rate (%, higher is better). IR: human intervention rate (%, lower is better). Best results in <b>bold</b>.</p>
+
+      <div class="takeaways">
+        <div class="takeaway reveal">
+          <h4>Best on every task</h4>
+          <p>UniIntervene tops success rate across all five tasks, with the largest gains on contact-rich settings where prior triggers struggle.</p>
+        </div>
+        <div class="takeaway reveal">
+          <h4>Value trend &gt; failure events</h4>
+          <p>Triggering on the temporal trend of estimated value detects stagnation more sensitively than failure prediction, especially when failures are visually subtle.</p>
+        </div>
+        <div class="takeaway reveal">
+          <h4>Half the human cost</h4>
+          <p>Intervention rate drops to 14.6% &mdash; less than half of HiL-SERL (34.3%) and well below FA-RL (24.6%).</p>
+        </div>
+      </div>
+
+      <!-- Ablation -->
+      <h3 class="subsection-title">Ablation Study</h3>
+      <p class="section-sub small">Key components ablated on <em>Pick Eggplant</em> and <em>RAM Insertion</em>.</p>
+      <div class="table-scroll reveal">
+        <table class="results-table ablation">
+          <thead>
+            <tr>
+              <th class="left">Variant</th>
+              <th>Q-Loss&nbsp;&darr;</th>
+              <th>Int.&nbsp;F1&nbsp;&uarr;</th>
+              <th>SR (%)&nbsp;&uarr;</th>
+              <th>IR (%)&nbsp;&darr;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="left">w/o Future Prediction</td><td>0.005</td><td>0.878</td><td>90</td><td>15.8</td></tr>
+            <tr><td class="left">w/o Value Prediction</td><td>&ndash;</td><td>0.845</td><td>85</td><td>18.7</td></tr>
+            <tr><td class="left">w/o Temporal Value-Risk</td><td>0.004</td><td>0.832</td><td>85</td><td>16.9</td></tr>
+            <tr><td class="left">w/o Memory Goal</td><td>0.004</td><td>0.882</td><td>85</td><td>16.1</td></tr>
+            <tr class="ours-row"><td class="left"><b>UniIntervene (full)</b></td><td><b>0.004</b></td><td><b>0.882</b></td><td><b>95</b></td><td><b>11.1</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CASE STUDY ===================== -->
+  <section class="section section-alt" id="case">
+    <div class="container">
+      <h2 class="section-title"><span class="kicker">08</span> Value-Aware Recovery</h2>
+      <p class="section-sub">
+        Across episodes, UniIntervene follows a consistent <strong>stagnation &rarr; trigger &rarr; recovery</strong>
+        pattern: it waits for sustained stagnation, fires at the value minimum, then climbs smoothly to success.
+      </p>
+      <figure class="figure-card reveal">
+        <img src="static/images/case_study.jpg" alt="Case study of value-aware recovery" loading="lazy" />
+        <figcaption>
+          <strong>UniIntervene enables value-aware recovery in real-world tasks.</strong>
+          On RAM Insertion and Fold Towel, the model detects sustained low-value stagnation, triggers
+          corrective recovery at the value minimum, and restores task progress toward successful completion.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== HARDWARE ===================== -->
+  <section class="section" id="hardware">
+    <div class="container narrow">
+      <h2 class="section-title"><span class="kicker">09</span> Hardware Setup</h2>
+      <figure class="figure-card slim reveal">
+        <img src="static/images/hardware.jpg" alt="Real-world hardware setup" loading="lazy" />
+        <figcaption>
+          A UR7e arm with a parallel-jaw gripper, a wrist camera and a fixed third-person camera, and a
+          SpaceMouse for corrective takeover. The same platform and intervention interface are shared by
+          UniIntervene and all baselines.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===================== BIBTEX ===================== -->
+  <section class="section section-alt" id="bibtex">
+    <div class="container narrow">
+      <h2 class="section-title"><span class="kicker">10</span> BibTeX</h2>
+      <div class="bibtex-wrap reveal">
+        <button class="copy-btn" id="copyBib">Copy</button>
+        <pre id="bibText">@unpublished{uniintervene2026,
+  title  = {UniIntervene: Agentic Intervention for Efficient
+            Real-World Reinforcement Learning},
+  author = {Anonymous Author(s)},
+  year   = {2026},
+  note   = {Under review}
+}</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <p>
+        Website template for the <strong>UniIntervene</strong> project page.
+        Anonymous submission &mdash; for review purposes only.
+      </p>
+      <p class="muted">
+        This page reuses media from the paper and supplementary material. Licensed under
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+
+  <script src="static/js/main.js"></script>
+</body>
+</html>
