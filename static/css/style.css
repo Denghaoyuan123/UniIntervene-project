@@ -135,9 +135,18 @@ a:hover { color: var(--violet-700); }
   filter: drop-shadow(0 18px 32px rgba(67,40,136,.18));
 }
 
-.authors { margin-top: 26px; font-size: 1.05rem; font-weight: 500; }
-.author { color: var(--ink); }
-.affil { color: var(--ink-mute); font-size: .92rem; margin-top: 4px; }
+.authors {
+  margin: 26px auto 0; max-width: 800px;
+  font-size: 1.1rem; font-weight: 500; line-height: 1.85;
+}
+.authors .author { color: var(--ink); white-space: nowrap; }
+a.author { color: var(--violet-700); transition: color .15s; }
+a.author:hover { color: var(--magenta); text-decoration: underline; }
+.authors sup { color: var(--violet-500); font-weight: 600; font-size: .68em; }
+.affil { color: var(--ink-soft); font-size: .96rem; margin-top: 10px; }
+.affil sup { color: var(--violet-500); font-weight: 600; }
+.affil-note { color: var(--ink-mute); font-size: .85rem; margin-top: 4px; }
+.affil-note .corr { color: var(--magenta); }
 
 .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px; }
 .btn {
