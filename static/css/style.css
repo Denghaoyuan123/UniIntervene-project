@@ -109,6 +109,13 @@ a:hover { color: var(--violet-700); }
   border: 1px solid var(--violet-200);
   padding: 7px 16px; border-radius: 999px; box-shadow: var(--shadow-sm);
 }
+.badge-accepted {
+  color: #fff;
+  background: linear-gradient(100deg, var(--violet-600), var(--magenta));
+  border-color: transparent;
+  box-shadow: 0 10px 26px rgba(106,69,207,.28);
+  letter-spacing: .02em;
+}
 .hero-title {
   font-family: var(--font-head); font-weight: 700;
   font-size: clamp(2.2rem, 10vw, 5.6rem); line-height: 1;

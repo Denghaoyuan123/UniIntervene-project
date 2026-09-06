@@ -1,7 +1,8 @@
 # UniIntervene — Project Page
 
 Static project / paper page for **UniIntervene: Agentic Intervention for Efficient
-Real-World Reinforcement Learning**. Pure HTML/CSS/JS, no build step.
+Real-World Reinforcement Learning**, accepted to **CoRL 2026**. Pure HTML/CSS/JS,
+no build step.
 
 ```
 website/
@@ -36,12 +37,10 @@ python3 -m http.server 8000
 
 ## Before going public — fill in the placeholders
 
-The submission is anonymous, so a few links are stubbed with `href="#"`. Search
-`index.html` for these and replace them:
+The code link is still stubbed with `href="#"`. Search `index.html` and replace it
+once the repository is public:
 
-- **Paper**, **arXiv**, **Code** buttons in the hero (`<a class="btn ...">`).
-- **Authors / affiliations** in the hero (`.authors`, `.affil`).
-- **BibTeX** block (`#bibText`) — currently `Anonymous Author(s)`.
+- **Code** button in the hero (`<a class="btn ...">`).
 
 The YouTube overview video and all figures/clips are already wired up.
 
